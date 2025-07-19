@@ -1,0 +1,2212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELIKIA MEDIA - L'information au cœur de l'Afrique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+:root {
+    --primary-dark: #0a2c5a;
+    --primary-gold: #d4af37;
+    --secondary-gold: #f5e7c1;
+    --light-bg: #f9f9f9;
+    --text-dark: #333;
+    --text-light: #fff;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+    --border-radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--light-bg);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+}
+
+header {
+    background: linear-gradient(to right, var(--primary-dark), #1a3d6d);
+    color: var(--text-light);
+    padding: 1rem 0;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    margin-left: 0.8rem;
+}
+
+.logo-icon {
+    color: var(--primary-gold);
+    font-size: 2.2rem;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+nav {
+    flex: 1;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+}
+
+.menu li {
+    margin: 0.2rem;
+}
+
+.menu a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: var(--transition);
+    display: block;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+}
+
+.menu a:hover, .menu a.active {
+    background-color: var(--primary-gold);
+    color: var(--primary-dark);
+}
+
+.search-container {
+    display: flex;
+    margin-left: 1rem;
+    max-width: 300px;
+    width: 100%;
+}
+
+.search-container input {
+    flex: 1;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-family: inherit;
+}
+
+.search-container button {
+    background: var(--primary-gold);
+    color: var(--primary-dark);
+    border: none;
+    padding: 0 1rem;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.search-container button:hover {
+    background: #c19d2d;
+}
+
+main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+.featured-carousel {
+    margin-bottom: 3rem;
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    height: 400px;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.slide-content {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    padding: 2rem;
+    width: 100%;
+}
+
+.slide-category {
+    background: var(--primary-gold);
+    color: var(--primary-dark);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.slide-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.slide-excerpt {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    max-width: 70%;
+}
+
+.carousel-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.carousel-dot.active {
+    background: var(--primary-gold);
+    transform: scale(1.2);
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.carousel-btn {
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.carousel-btn:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+.welcome-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2.5rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.welcome-section h2 {
+    color: var(--primary-dark);
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.welcome-section p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #555;
+    line-height: 1.8;
+}
+
+.highlight {
+    color: var(--primary-gold);
+    font-weight: bold;
+}
+
+.category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 0.6rem 1.2rem;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--primary-dark);
+    color: white;
+    border-color: var(--primary-dark);
+}
+
+.recent-articles {
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section-title {
+    position: relative;
+    font-size: 1.8rem;
+    color: var(--primary-dark);
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--primary-gold);
+}
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.article-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    cursor: pointer;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.article-image {
+    height: 200px;
+    background-color: var(--primary-dark);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-icon {
+    font-size: 3rem;
+    color: white;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pdf-icon {
+    font-size: 3rem;
+    color: #e74c3c;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.article-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-category {
+    display: inline-block;
+    background: var(--secondary-gold);
+    color: var(--primary-dark);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.article-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--primary-dark);
+    flex: 1;
+}
+
+.article-excerpt {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #777;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+    margin-top: auto;
+}
+
+.edit-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: var(--transition);
+    color: var(--primary-dark);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.article-card:hover .edit-btn {
+    opacity: 1;
+}
+
+.featured-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--primary-gold);
+    color: var(--primary-dark);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.article-detail {
+    display: none;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.article-header {
+    margin-bottom: 2rem;
+}
+
+.article-detail-title {
+    font-size: 2.2rem;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
+.article-meta-detail {
+    display: flex;
+    gap: 1rem;
+    color: #777;
+    margin-bottom: 1.5rem;
+}
+
+.article-detail-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+}
+
+.article-detail-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.article-detail-content h2,
+.article-detail-content h3 {
+    margin: 1.5rem 0 1rem;
+    color: var(--primary-dark);
+}
+
+.article-detail-content p {
+    margin-bottom: 1.2rem;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-dark);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.back-button:hover {
+    background: #0d3a7c;
+}
+
+.video-player {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+}
+
+.video-player iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.pdf-viewer {
+    width: 100%;
+    height: 600px;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+}
+
+.pdf-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-dark);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.pdf-download:hover {
+    background: #0d3a7c;
+}
+
+.admin-section {
+    display: none;
+    background: white;
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin: 3rem auto;
+    max-width: 800px;
+    position: relative;
+}
+
+.close-form {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #777;
+}
+
+.admin-section h3 {
+    text-align: center;
+    color: var(--primary-dark);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--primary-gold);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.editor-toolbar {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+    background: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.editor-btn {
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.editor-btn:hover {
+    background: #e0e0e0;
+}
+
+.editor-content {
+    min-height: 200px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+}
+
+.editor-content:focus {
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.btn {
+    display: inline-block;
+    background: var(--primary-gold);
+    color: var(--primary-dark);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    background: #c19d2d;
+    transform: translateY(-2px);
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-secondary {
+    background: #f1f1f1;
+    color: #555;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+.btn-danger {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+}
+
+.image-upload-container {
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+    margin-top: 0.5rem;
+}
+
+.image-upload-container:hover {
+    border-color: var(--primary-gold);
+}
+
+.image-upload-container.drag-over {
+    border-color: var(--primary-dark);
+    background-color: rgba(10, 44, 90, 0.05);
+}
+
+.image-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.image-upload-icon {
+    font-size: 3rem;
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+}
+
+.image-upload-text {
+    margin-bottom: 1rem;
+}
+
+.image-upload-btn {
+    background: var(--primary-dark);
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.image-upload-btn:hover {
+    background: #0d3a7c;
+}
+
+#imagePreview {
+    display: none;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#uploadedImage {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+}
+
+.remove-image {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #e74c3c;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.media-type-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.media-type-btn {
+    flex: 1;
+    padding: 1rem;
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.media-type-btn.active {
+    background: var(--primary-gold);
+    color: var(--primary-dark);
+    border-color: var(--primary-gold);
+}
+
+.media-type-btn i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #777;
+}
+
+.modal-content h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-dark);
+}
+
+footer {
+    background: var(--primary-dark);
+    color: var(--text-light);
+    padding: 3rem 0 1.5rem;
+    margin-top: 2rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--text-light);
+    font-size: 1.3rem;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.social-link:hover {
+    background: var(--primary-gold);
+    color: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+.contact-info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.contact-info p {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.copyright {
+    font-size: 0.9rem;
+}
+
+.copyright .admin-access {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.copyright .admin-access:hover {
+    color: var(--primary-gold);
+}
+
+.copyright .admin-access::after {
+    content: "Accès Admin";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-gold);
+    color: var(--primary-dark);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.copyright .admin-access:hover::after {
+    opacity: 1;
+}
+
+#settingsModal .modal-content {
+    max-width: 600px;
+}
+
+.settings-tabs {
+    display: flex;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #eee;
+}
+
+.tab-btn {
+    padding: 0.8rem 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    position: relative;
+    transition: var(--transition);
+}
+
+.tab-btn.active {
+    color: var(--primary-dark);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-gold);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.settings-group {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-radius: var(--border-radius);
+}
+
+.settings-group h4 {
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.settings-item {
+    margin-bottom: 1rem;
+}
+
+.settings-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.settings-item input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.admin-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.featured-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.featured-checkbox input {
+    width: 20px;
+    height: 20px;
+}
+
+.logout-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: none;
+}
+
+.logout-btn:hover {
+    background: #c0392b;
+}
+
+@media (min-width: 992px) {
+    .section-title {
+        text-align: left;
+    }
+    .section-title::after {
+        left: 0;
+        transform: none;
+    }
+    .footer-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .footer-logo {
+        flex: 100%;
+    }
+    .social-links, .contact-info {
+        flex: 1;
+        margin-bottom: 0;
+    }
+    .contact-info {
+        text-align: right;
+    }
+}
+
+@media (max-width: 991px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    nav {
+        display: none;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    .menu {
+        flex-direction: column;
+    }
+    .menu li {
+        width: 100%;
+    }
+    .menu a {
+        padding: 1rem;
+    }
+    .search-container {
+        margin: 1rem 0 0;
+        max-width: 100%;
+    }
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .logo {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-carousel {
+        height: 300px;
+    }
+    .slide-title {
+        font-size: 1.5rem;
+    }
+    .slide-excerpt {
+        max-width: 100%;
+        font-size: 1rem;
+    }
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+    .admin-controls {
+        flex-direction: column;
+    }
+    .media-type-selector {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-section {
+        padding: 1.5rem;
+    }
+    .form-actions {
+        flex-direction: column;
+    }
+    .welcome-section {
+        padding: 1.5rem;
+    }
+}
+</style>
+<body>
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" id="closeLoginModal">&times;</button>
+            <h3>Connexion Administrateur</h3>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-block">Se connecter</button>
+            </form>
+        </div>
+    </div>
+    <div id="settingsModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" id="closeSettingsModal">&times;</button>
+            <h3>Paramètres du site</h3>
+            <div class="settings-tabs">
+                <button class="tab-btn active" data-tab="social">Liens sociaux</button>
+                <button class="tab-btn" data-tab="contact">Informations de contact</button>
+            </div>
+            <div class="tab-content active" id="social-tab">
+                <div class="settings-group">
+                    <h4>Réseaux sociaux</h4>
+                    <div class="settings-grid">
+                        <div class="settings-item">
+                            <label for="facebookUrl"><i class="fab fa-facebook-f"></i> Facebook</label>
+                            <input type="url" id="facebookUrl" class="form-control" placeholder="https://facebook.com/votrepage">
+                        </div>
+                        <div class="settings-item">
+                            <label for="whatsappUrl"><i class="fab fa-whatsapp"></i> WhatsApp</label>
+                            <input type="url" id="whatsappUrl" class="form-control" placeholder="https://wa.me/votrenumero">
+                        </div>
+                        <div class="settings-item">
+                            <label for="youtubeUrl"><i class="fab fa-youtube"></i> YouTube</label>
+                            <input type="url" id="youtubeUrl" class="form-control" placeholder="https://youtube.com/votrechaine">
+                        </div>
+                        <div class="settings-item">
+                            <label for="twitterUrl"><i class="fab fa-twitter"></i> Twitter</label>
+                            <input type="url" id="twitterUrl" class="form-control" placeholder="https://twitter.com/votrecompte">
+                        </div>
+                        <div class="settings-item">
+                            <label for="instagramUrl"><i class="fab fa-instagram"></i> Instagram</label>
+                            <input type="url" id="instagramUrl" class="form-control" placeholder="https://instagram.com/votrecompte">
+                        </div>
+                        <div class="settings-item">
+                            <label for="linkedinUrl"><i class="fab fa-linkedin"></i> LinkedIn</label>
+                            <input type="url" id="linkedinUrl" class="form-control" placeholder="https://linkedin.com/votrepage">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="contact-tab">
+                <div class="settings-group">
+                    <h4>Coordonnées</h4>
+                    <div class="settings-grid">
+                        <div class="settings-item">
+                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="contact@votresite.com">
+                        </div>
+                        <div class="settings-item">
+                            <label for="phone"><i class="fas fa-phone"></i> Téléphone</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="+243 00 000 0000">
+                        </div>
+                        <div class="settings-item">
+                            <label for="address"><i class="fas fa-map-marker-alt"></i> Adresse</label>
+                            <input type="text" id="address" class="form-control" placeholder="Adresse complète">
+                        </div>
+                        <div class="settings-item">
+                            <label for="mapUrl"><i class="fas fa-map"></i> Lien Google Maps</label>
+                            <input type="url" id="mapUrl" class="form-control" placeholder="https://goo.gl/maps/...">
+                        </div>
+                        <div class="settings-item">
+                            <label for="hours"><i class="fas fa-clock"></i> Heures d'ouverture</label>
+                            <input type="text" id="hours" class="form-control" placeholder="Lun-Ven: 9h-18h">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button id="saveSettings" class="btn btn-block">Enregistrer les paramètres</button>
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="ai.png" alt="logo" width="80" height="65" />
+                <h1>ELIKIA MEDIA</h1>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul class="menu"></ul>
+            </nav>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Rechercher des articles...">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+            </div>
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i> Déconnexion
+            </button>
+        </div>
+    </header>
+    <main>
+        <div class="back-button" id="backButton" style="display: none;">
+            <i class="fas fa-arrow-left"></i> Retour aux articles
+        </div>
+        <section class="featured-carousel" id="featuredCarousel"></section>
+        <section class="welcome-section">
+            <h2>Bienvenue sur <span class="highlight">ELIKIA MEDIA</span></h2>
+            <p>Votre source d'information fiable et complète sur l'actualité africaine et internationale. Nous vous offrons une couverture approfondie de la politique, de l'économie, de la société et de la culture, avec des analyses pertinentes et des perspectives variées. Notre mission est de mettre en lumière les succès, les défis et les opportunités du continent africain.</p>
+        </section>
+        <section class="recent-articles" id="articlesSection">
+            <div class="section-title-container">
+                <h2 class="section-title">Dernières Actualités</h2>
+                <div class="category-filter">
+                    <button class="filter-btn active" data-category="all">Tous</button>
+                    <button class="filter-btn" data-category="Politique">Politique</button>
+                    <button class="filter-btn" data-category="Économie">Économie</button>
+                    <button class="filter-btn" data-category="Société">Société</button>
+                    <button class="filter-btn" data-category="Culture">Culture</button>
+                </div>
+            </div>
+            <div class="articles-grid" id="articlesGrid"></div>
+            <div class="admin-controls" id="adminControls" style="display: none;">
+                <button class="btn" id="newArticleBtn">
+                    <i class="fas fa-plus"></i> Nouvel article
+                </button>
+                <button class="btn" id="settingsBtn">
+                    <i class="fas fa-cog"></i> Paramètres
+                </button>
+            </div>
+        </section>
+        <section class="article-detail" id="articleDetail"></section>
+        <section id="admin-form" class="admin-section">
+            <button class="close-form" id="closeFormBtn">&times;</button>
+            <h3 id="form-title">Publier un Nouvel Article</h3>
+            <form id="article-form">
+                <input type="hidden" id="article-id" value="">
+                <div class="form-group">
+                    <label for="title">Titre de l'article</label>
+                    <input type="text" id="title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Catégorie</label>
+                    <select id="category" class="form-control" required>
+                        <option value="">Sélectionnez une catégorie</option>
+                        <option value="Actualités">Actualités</option>
+                        <option value="Politique">Politique</option>
+                        <option value="Économie">Économie</option>
+                        <option value="Société">Société</option>
+                        <option value="Culture">Culture</option>
+                        <option value="Tribune Libre">Tribune Libre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="author">Auteur</label>
+                    <input type="text" id="author" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Type de média</label>
+                    <div class="media-type-selector">
+                        <div class="media-type-btn active" data-type="image">
+                            <i class="fas fa-image"></i>
+                            Image
+                        </div>
+                        <div class="media-type-btn" data-type="video">
+                            <i class="fas fa-video"></i>
+                            Vidéo
+                        </div>
+                        <div class="media-type-btn" data-type="pdf">
+                            <i class="fas fa-file-pdf"></i>
+                            PDF
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group media-upload" data-type="image">
+                    <label>Image de l'article</label>
+                    <div class="image-upload-container" id="imageUploadContainer">
+                        <label class="image-upload-label" for="imageUpload">
+                            <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
+                            <div class="image-upload-text">Glissez-déposez une image ou cliquez pour sélectionner</div>
+                            <div class="image-upload-btn">Choisir une image</div>
+                        </label>
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                    </div>
+                    <div id="imagePreview">
+                        <img id="uploadedImage" src="#" alt="Image téléchargée">
+                        <div class="remove-image" id="removeImageBtn">Supprimer l'image</div>
+                    </div>
+                </div>
+                <div class="form-group media-upload" data-type="video" style="display: none;">
+                    <label for="videoUrl">Lien vidéo (YouTube)</label>
+                    <input type="url" id="videoUrl" class="form-control" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+                <div class="form-group media-upload" data-type="pdf" style="display: none;">
+                    <label for="pdfUpload">Fichier PDF</label>
+                    <div class="image-upload-container">
+                        <label class="image-upload-label" for="pdfUpload">
+                            <i class="fas fa-file-pdf image-upload-icon"></i>
+                            <div class="image-upload-text">Glissez-déposez un PDF ou cliquez pour sélectionner</div>
+                            <div class="image-upload-btn">Choisir un PDF</div>
+                        </label>
+                        <input type="file" id="pdfUpload" accept=".pdf" style="display: none;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="content">Contenu de l'article</label>
+                    <div class="editor-toolbar">
+                        <button type="button" class="editor-btn" data-command="bold" title="Gras"><i class="fas fa-bold"></i></button>
+                        <button type="button" class="editor-btn" data-command="italic" title="Italique"><i class="fas fa-italic"></i></button>
+                        <button type="button" class="editor-btn" data-command="underline" title="Souligné"><i class="fas fa-underline"></i></button>
+                        <button type="button" class="editor-btn" data-command="insertUnorderedList" title="Liste à puces"><i class="fas fa-list-ul"></i></button>
+                        <button type="button" class="editor-btn" data-command="insertOrderedList" title="Liste numérotée"><i class="fas fa-list-ol"></i></button>
+                        <button type="button" class="editor-btn" data-command="createLink" title="Lien"><i class="fas fa-link"></i></button>
+                        <button type="button" class="editor-btn" data-command="formatBlock" data-value="h2" title="Titre 2">H2</button>
+                        <button type="button" class="editor-btn" data-command="formatBlock" data-value="h3" title="Titre 3">H3</button>
+                        <button type="button" class="editor-btn" data-command="insertHorizontalRule" title="Ligne horizontale"><i class="fas fa-grip-lines"></i></button>
+                    </div>
+                    <div id="content" class="editor-content" contenteditable="true"></div>
+                </div>
+                <div class="form-group">
+                    <label class="featured-checkbox">
+                        <input type="checkbox" id="featured">
+                        Mettre cet article à la une
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn" class="btn btn-block">Publier l'article</button>
+                    <button type="button" id="delete-btn" class="btn btn-danger btn-block" style="display:none;">Supprimer l'article</button>
+                    <button type="button" id="cancel-btn" class="btn btn-secondary btn-block">Annuler</button>
+                </div>
+            </form>
+            <div id="success-message" class="success-message">
+                <i class="fas fa-check-circle"></i> <span id="success-text">Article publié avec succès !</span>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <i class="fas fa-newspaper"></i> ELIKIA MEDIA
+            </div>
+            <div class="social-links">
+                <a href="#" id="facebookLink" class="social-link" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" id="whatsappLink" class="social-link" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" id="youtubeLink" class="social-link" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="mailto:contact@elikiamedia.com" id="emailLink" class="social-link" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> <span id="addressText">Kinshasa, RDC</span></p>
+                <p><i class="fas fa-phone"></i> <span id="phoneText">+243 81 234 5678</span></p>
+                <p><i class="fas fa-envelope"></i> <span id="emailText">contact@elikiamedia.com</span></p>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">
+                    <span id="adminCopyrightAccess" class="admin-access">©</span> 2025 ELIKIA MEDIA. Tous droits réservés.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script>
+const state = {
+    isAdmin: false,
+    editingArticleId: null,
+    currentImageData: null,
+    currentPdfData: null,
+    currentSlide: 0,
+    carouselInterval: null,
+    settings: {
+        facebookUrl: "#",
+        whatsappUrl: "#",
+        youtubeUrl: "#",
+        twitterUrl: "#",
+        instagramUrl: "#",
+        linkedinUrl: "#",
+        email: "contact@elikiamedia.com",
+        phone: "+243 81 234 5678",
+        address: "Kinshasa, RDC",
+        mapUrl: "#",
+        hours: "Lun-Ven: 8h-18h"
+    },
+    articles: [
+        {
+            id: 1,
+            title: "Sommet des chefs d'État africains à Addis-Abeba",
+            category: "Politique",
+            author: "Jean Kabasele",
+            media: {
+                type: "image",
+                url: "https://picsum.photos/600/400?random=1"
+            },
+            content: "<p>Les dirigeants africains se réunissent pour discuter de l'intégration régionale et des défis sécuritaires du continent. Cette rencontre historique vise à renforcer la coopération entre les nations africaines et à trouver des solutions communes aux problèmes de sécurité qui affectent le développement du continent.</p><h2>Un avenir prometteur</h2><p>Le plan de développement économique présenté lors du sommet a été accueilli avec enthousiasme par la plupart des participants. Plusieurs pays ont déjà annoncé leur intention de participer activement à ce projet ambitieux.</p>",
+            date: "17 Juil. 2025",
+            featured: true
+        },
+        {
+            id: 2,
+            title: "Croissance économique en hausse de 5,2% en Afrique subsaharienne",
+            category: "Économie",
+            author: "Marie-Louise Diallo",
+            media: {
+                type: "image",
+                url: "https://picsum.photos/600/400?random=2"
+            },
+            content: "<p>Malgré les défis mondiaux, la région affiche une résilience remarquable selon le FMI. Les projections économiques montrent une croissance soutenue dans plusieurs secteurs clés, notamment les technologies, l'agriculture et les industries extractives, contribuant ainsi au développement économique de la région.</p><h2>Les secteurs porteurs</h2><p>L'analyse détaillée montre que le secteur technologique connaît une croissance exponentielle, avec une augmentation de 12% des investissements dans les startups africaines. L'agriculture moderne et les énergies renouvelables sont également des moteurs importants de cette croissance.</p>",
+            date: "16 Juil. 2025",
+            featured: true
+        },
+        {
+            id: 3,
+            title: "Festival panafricain de cinéma : les lauréats dévoilés",
+            category: "Culture",
+            author: "Samuel N'diaye",
+            media: {
+                type: "video",
+                url: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            content: "<p>Le cinéma africain célébré lors de la 15ème édition du festival qui s'est tenu à Ouagadougou. Des réalisateurs talentueux de tout le continent ont présenté leurs œuvres, mettant en lumière la diversité culturelle et les histoires captivantes de l'Afrique contemporaine.</p><h2>Des œuvres remarquables</h2><p>Le grand prix du festival a été décerné au film congolais 'Lumière sur Kin' qui raconte l'histoire touchante d'une famille à travers trois générations. Le film sénégalais 'Teranga' a remporté le prix du public pour sa représentation authentique de la vie rurale.</p>",
+            date: "15 Juil. 2025",
+            featured: false
+        },
+        {
+            id: 4,
+            title: "Rapport économique annuel 2025",
+            category: "Économie",
+            author: "Ministère de l'Économie",
+            media: {
+                type: "pdf",
+                url: "#",
+                filename: "rapport-economique-2025.pdf"
+            },
+            content: "<p>Le ministère de l'Économie a publié son rapport annuel sur la situation économique du pays. Ce document complet analyse les performances des différents secteurs et présente les perspectives pour l'année à venir.</p><h2>Principales conclusions</h2><p>Le rapport met en lumière une croissance soutenue du PIB de 5,2%, une inflation maîtrisée à 3,8% et une augmentation des investissements étrangers de 12% par rapport à l'année précédente.</p>",
+            date: "14 Juil. 2025",
+            featured: false
+        }
+    ]
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    const adminCopyrightAccess = document.getElementById('adminCopyrightAccess');
+    const loginModal = document.getElementById('loginModal');
+    const closeLoginModal = document.getElementById('closeLoginModal');
+    const loginForm = document.getElementById('login-form');
+    const settingsModal = document.getElementById('settingsModal');
+    const closeSettingsModal = document.getElementById('closeSettingsModal');
+    const saveSettingsBtn = document.getElementById('saveSettings');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const closeFormBtn = document.getElementById('closeFormBtn');
+    const form = document.getElementById('article-form');
+    const successMessage = document.getElementById('success-message');
+    const successText = document.getElementById('success-text');
+    const imageUploadContainer = document.getElementById('imageUploadContainer');
+    const imageUpload = document.getElementById('imageUpload');
+    const imagePreview = document.getElementById('imagePreview');
+    const uploadedImage = document.getElementById('uploadedImage');
+    const removeImageBtn = document.getElementById('removeImageBtn');
+    const formTitle = document.getElementById('form-title');
+    const submitBtn = document.getElementById('submit-btn');
+    const deleteBtn = document.getElementById('delete-btn');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const articleIdInput = document.getElementById('article-id');
+    const editorContent = document.getElementById('content');
+    const editorButtons = document.querySelectorAll('.editor-btn');
+    const articlesGrid = document.getElementById('articlesGrid');
+    const featuredCarousel = document.getElementById('featuredCarousel');
+    const articlesSection = document.getElementById('articlesSection');
+    const articleDetail = document.getElementById('articleDetail');
+    const backButton = document.getElementById('backButton');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const newArticleBtn = document.getElementById('newArticleBtn');
+    const settingsBtn = document.getElementById('settingsBtn');
+    const adminControls = document.getElementById('adminControls');
+    const featuredCheckbox = document.getElementById('featured');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const mediaTypeButtons = document.querySelectorAll('.media-type-btn');
+    const mediaUploads = document.querySelectorAll('.media-upload');
+    const videoUrl = document.getElementById('videoUrl');
+    const pdfUpload = document.getElementById('pdfUpload');
+    const facebookLink = document.getElementById('facebookLink');
+    const whatsappLink = document.getElementById('whatsappLink');
+    const youtubeLink = document.getElementById('youtubeLink');
+    const emailLink = document.getElementById('emailLink');
+    const addressText = document.getElementById('addressText');
+    const phoneText = document.getElementById('phoneText');
+    const emailText = document.getElementById('emailText');
+    const facebookUrl = document.getElementById('facebookUrl');
+    const whatsappUrl = document.getElementById('whatsappUrl');
+    const youtubeUrl = document.getElementById('youtubeUrl');
+    const twitterUrl = document.getElementById('twitterUrl');
+    const instagramUrl = document.getElementById('instagramUrl');
+    const linkedinUrl = document.getElementById('linkedinUrl');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const address = document.getElementById('address');
+    const mapUrl = document.getElementById('mapUrl');
+    const hours = document.getElementById('hours');
+
+    loadSettings();
+    applySettings();
+    renderArticles();
+    renderCarousel();
+
+    adminCopyrightAccess.addEventListener('click', function() {
+        if (state.isAdmin) {
+            openSettingsModal();
+        } else {
+            openAdminLogin();
+        }
+    });
+
+    newArticleBtn.addEventListener('click', openFormForNewArticle);
+    settingsBtn.addEventListener('click', openSettingsModal);
+    logoutBtn.addEventListener('click', logoutAdmin);
+
+    mediaTypeButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            mediaTypeButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const mediaType = this.dataset.type;
+            mediaUploads.forEach(upload => {
+                upload.style.display = 'none';
+            });
+            document.querySelector(`.media-upload[data-type="${mediaType}"]`).style.display = 'block';
+        });
+    });
+
+    function openAdminLogin() {
+        loginModal.style.display = 'flex';
+    }
+
+    closeLoginModal.addEventListener('click', function() {
+        loginModal.style.display = 'none';
+    });
+
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        if (username === "admin" && password === "elikia2025") {
+            state.isAdmin = true;
+            adminCopyrightAccess.innerHTML = '&#x1F512;';
+            adminCopyrightAccess.title = "Administrateur connecté - Cliquez pour accéder aux paramètres";
+            adminCopyrightAccess.style.color = "var(--primary-gold)";
+            adminCopyrightAccess.style.fontWeight = "bold";
+            document.querySelectorAll('.edit-btn').forEach(btn => btn.style.display = 'flex');
+            adminControls.style.display = 'flex';
+            logoutBtn.style.display = 'block';
+            loginModal.style.display = 'none';
+        } else {
+            alert("Identifiants incorrects. Veuillez réessayer.");
+        }
+    });
+
+    function openSettingsModal() {
+        if (!state.isAdmin) return;
+        facebookUrl.value = state.settings.facebookUrl;
+        whatsappUrl.value = state.settings.whatsappUrl;
+        youtubeUrl.value = state.settings.youtubeUrl;
+        twitterUrl.value = state.settings.twitterUrl;
+        instagramUrl.value = state.settings.instagramUrl;
+        linkedinUrl.value = state.settings.linkedinUrl;
+        email.value = state.settings.email;
+        phone.value = state.settings.phone;
+        address.value = state.settings.address;
+        mapUrl.value = state.settings.mapUrl;
+        hours.value = state.settings.hours;
+        settingsModal.style.display = 'flex';
+    }
+
+    closeSettingsModal.addEventListener('click', function() {
+        settingsModal.style.display = 'none';
+    });
+
+    function logoutAdmin() {
+        state.isAdmin = false;
+        adminCopyrightAccess.innerHTML = '©';
+        adminCopyrightAccess.title = "";
+        adminCopyrightAccess.style.color = "";
+        adminCopyrightAccess.style.fontWeight = "";
+        document.querySelectorAll('.edit-btn').forEach(btn => btn.style.display = 'none');
+        adminControls.style.display = 'none';
+        logoutBtn.style.display = 'none';
+        alert("Vous avez été déconnecté du mode administrateur.");
+    }
+
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            tabButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const tabId = this.dataset.tab;
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`${tabId}-tab`).classList.add('active');
+        });
+    });
+
+    saveSettingsBtn.addEventListener('click', function() {
+        state.settings = {
+            facebookUrl: facebookUrl.value,
+            whatsappUrl: whatsappUrl.value,
+            youtubeUrl: youtubeUrl.value,
+            twitterUrl: twitterUrl.value,
+            instagramUrl: instagramUrl.value,
+            linkedinUrl: linkedinUrl.value,
+            email: email.value,
+            phone: phone.value,
+            address: address.value,
+            mapUrl: mapUrl.value,
+            hours: hours.value
+        };
+        localStorage.setItem('siteSettings', JSON.stringify(state.settings));
+        applySettings();
+        settingsModal.style.display = 'none';
+    });
+
+    function loadSettings() {
+        const savedSettings = localStorage.getItem('siteSettings');
+        if (savedSettings) {
+            state.settings = JSON.parse(savedSettings);
+        }
+    }
+
+    function applySettings() {
+        facebookLink.href = state.settings.facebookUrl;
+        whatsappLink.href = state.settings.whatsappUrl;
+        youtubeLink.href = state.settings.youtubeUrl;
+        emailLink.href = `mailto:${state.settings.email}`;
+        addressText.textContent = state.settings.address;
+        phoneText.textContent = state.settings.phone;
+        emailText.textContent = state.settings.email;
+    }
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const category = this.dataset.category;
+            filterArticles(category);
+        });
+    });
+
+    function filterArticles(category) {
+        const articles = document.querySelectorAll('.article-card');
+        articles.forEach(article => {
+            if (category === "all" || article.dataset.category === category) {
+                article.style.display = 'block';
+            } else {
+                article.style.display = 'none';
+            }
+        });
+    }
+
+    searchButton.addEventListener('click', searchArticles);
+    searchInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+            searchArticles();
+        }
+    });
+
+    function searchArticles() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        if (searchTerm === "") {
+            renderArticles();
+            return;
+        }
+        const filteredArticles = state.articles.filter(article => {
+            return (
+                article.title.toLowerCase().includes(searchTerm) ||
+                article.content.toLowerCase().includes(searchTerm) ||
+                article.author.toLowerCase().includes(searchTerm) ||
+                article.category.toLowerCase().includes(searchTerm)
+            );
+        });
+        renderArticles(filteredArticles);
+    }
+
+    function renderArticles(articlesToShow = state.articles) {
+        articlesGrid.innerHTML = '';
+        articlesToShow.forEach(article => {
+            const articleCard = document.createElement('article');
+            articleCard.className = 'article-card';
+            articleCard.dataset.id = article.id;
+            articleCard.dataset.category = article.category;
+            const excerpt = article.content.replace(/<[^>]*>/g, '').substring(0, 120) + '...';
+            let mediaHtml = '';
+            if (article.media.type === "image") {
+                mediaHtml = `<div class="article-image" style="background-image: url('${article.media.url}');"></div>`;
+            } else if (article.media.type === "video") {
+                mediaHtml = `
+                    <div class="article-image" style="background-image: url('https://img.youtube.com/vi/${getYouTubeId(article.media.url)}/0.jpg');">
+                        <div class="video-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                `;
+            } else if (article.media.type === "pdf") {
+                mediaHtml = `
+                    <div class="article-image" style="background-color: #f1f1f1;">
+                        <div class="pdf-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                    </div>
+                `;
+            }
+            articleCard.innerHTML = `
+                ${mediaHtml}
+                ${article.featured ? '<span class="featured-badge">À la une</span>' : ''}
+                <div class="article-content">
+                    <span class="article-category">${article.category}</span>
+                    <h3 class="article-title">${article.title}</h3>
+                    <p class="article-excerpt">${excerpt}</p>
+                    <div class="article-meta">
+                        <span>Par ${article.author}</span>
+                        <span>${article.date}</span>
+                    </div>
+                </div>
+                <button class="edit-btn" title="Modifier l'article">
+                    <i class="fas fa-edit"></i>
+                </button>
+            `;
+            articleCard.querySelector('.edit-btn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                openFormForEdit(article);
+            });
+            articleCard.addEventListener('click', function() {
+                showArticleDetail(article.id);
+            });
+            articlesGrid.appendChild(articleCard);
+        });
+    }
+
+    function showArticleDetail(articleId) {
+        const article = state.articles.find(a => a.id === articleId);
+        if (!article) return;
+        articlesSection.style.display = 'none';
+        featuredCarousel.style.display = 'none';
+        backButton.style.display = 'inline-flex';
+        let mediaHtml = '';
+        if (article.media.type === "image") {
+            mediaHtml = `<img src="${article.media.url}" alt="${article.title}" class="article-detail-image">`;
+        } else if (article.media.type === "video") {
+            mediaHtml = `
+                <div class="video-player">
+                    <iframe src="${article.media.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            `;
+        } else if (article.media.type === "pdf") {
+            mediaHtml = `
+                <div class="pdf-viewer">
+                    <embed src="${article.media.url}" type="application/pdf" width="100%" height="100%">
+                </div>
+                <a href="${article.media.url}" class="pdf-download" download="${article.media.filename || 'document.pdf'}">
+                    <i class="fas fa-download"></i> Télécharger le PDF
+                </a>
+            `;
+        }
+        articleDetail.innerHTML = `
+            <div class="article-header">
+                <span class="article-category">${article.category}</span>
+                <h2 class="article-detail-title">${article.title}</h2>
+                <div class="article-meta-detail">
+                    <span><i class="fas fa-user"></i> ${article.author}</span>
+                    <span><i class="fas fa-calendar"></i> ${article.date}</span>
+                </div>
+            </div>
+            ${mediaHtml}
+            <div class="article-detail-content">
+                ${article.content}
+            </div>
+        `;
+        articleDetail.style.display = 'block';
+    }
+
+    backButton.addEventListener('click', function() {
+        articleDetail.style.display = 'none';
+        articlesSection.style.display = 'block';
+        featuredCarousel.style.display = 'block';
+        backButton.style.display = 'none';
+    });
+
+    function renderCarousel() {
+        const featuredArticles = state.articles.filter(article => article.featured);
+        let carouselHTML = '';
+        let controlsHTML = '';
+        featuredArticles.forEach((article, index) => {
+            carouselHTML += `
+                <div class="carousel-slide ${index === 0 ? 'active' : ''}"
+                     style="background-image: url('${article.media.type === "image" ? article.media.url : article.media.type === "video" ? `https://img.youtube.com/vi/${getYouTubeId(article.media.url)}/0.jpg` : 'https://picsum.photos/1200/600?random=pdf'}');">
+                    <div class="slide-content">
+                        <span class="slide-category">${article.category}</span>
+                        <h3 class="slide-title">${article.title}</h3>
+                        <p class="slide-excerpt">${article.content.replace(/<[^>]*>/g, '').substring(0, 150)}...</p>
+                        <button class="btn" data-id="${article.id}">Lire l'article</button>
+                    </div>
+                </div>
+            `;
+            controlsHTML += `<div class="carousel-dot ${index === 0 ? 'active' : ''}" data-slide="${index}"></div>`;
+        });
+        carouselHTML += `
+            <div class="carousel-nav">
+                <button class="carousel-btn" id="prevSlide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn" id="nextSlide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="carousel-controls">
+                ${controlsHTML}
+            </div>
+        `;
+        featuredCarousel.innerHTML = carouselHTML;
+        initCarousel();
+        document.querySelectorAll('.featured-carousel .btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const articleId = parseInt(this.dataset.id);
+                showArticleDetail(articleId);
+            });
+        });
+    }
+
+    function initCarousel() {
+        const carouselSlides = document.querySelectorAll('.carousel-slide');
+        const carouselDots = document.querySelectorAll('.carousel-dot');
+        const prevSlideBtn = document.getElementById('prevSlide');
+        const nextSlideBtn = document.getElementById('nextSlide');
+        if (carouselSlides.length === 0) return;
+        clearInterval(state.carouselInterval);
+        state.carouselInterval = setInterval(nextSlide, 5000);
+        carouselDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.dataset.slide);
+                goToSlide(slideIndex);
+            });
+        });
+        prevSlideBtn.addEventListener('click', prevSlide);
+        nextSlideBtn.addEventListener('click', nextSlide);
+
+        function nextSlide() {
+            const nextSlideIndex = (state.currentSlide + 1) % carouselSlides.length;
+            goToSlide(nextSlideIndex);
+        }
+
+        function prevSlide() {
+            const prevSlideIndex = (state.currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
+            goToSlide(prevSlideIndex);
+        }
+
+        function goToSlide(slideIndex) {
+            carouselSlides[state.currentSlide].classList.remove('active');
+            carouselDots[state.currentSlide].classList.remove('active');
+            state.currentSlide = slideIndex;
+            carouselSlides[state.currentSlide].classList.add('active');
+            carouselDots[state.currentSlide].classList.add('active');
+            clearInterval(state.carouselInterval);
+            state.carouselInterval = setInterval(nextSlide, 5000);
+        }
+    }
+
+    function getYouTubeId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    function openFormForNewArticle() {
+        form.reset();
+        editorContent.innerHTML = "";
+        state.editingArticleId = null;
+        formTitle.textContent = "Publier un Nouvel Article";
+        submitBtn.textContent = "Publier l'article";
+        deleteBtn.style.display = 'none';
+        featuredCheckbox.checked = false;
+        imagePreview.style.display = 'none';
+        state.currentImageData = null;
+        state.currentPdfData = null;
+        mediaTypeButtons.forEach(b => b.classList.remove('active'));
+        document.querySelector('.media-type-btn[data-type="image"]').classList.add('active');
+        mediaUploads.forEach(upload => upload.style.display = 'none');
+        document.querySelector('.media-upload[data-type="image"]').style.display = 'block';
+        document.getElementById('admin-form').style.display = 'block';
+        window.scrollTo({
+            top: document.getElementById('admin-form').offsetTop - 100,
+            behavior: 'smooth'
+        });
+    }
+
+    closeFormBtn.addEventListener('click', function() {
+        document.getElementById('admin-form').style.display = 'none';
+    });
+
+    cancelBtn.addEventListener('click', function() {
+        document.getElementById('admin-form').style.display = 'none';
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const title = document.getElementById('title').value;
+        const category = document.getElementById('category').value;
+        const author = document.getElementById('author').value;
+        const content = editorContent.innerHTML;
+        const featured = featuredCheckbox.checked;
+        const date = new Date().toLocaleDateString('fr-FR', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        });
+        const mediaType = document.querySelector('.media-type-btn.active').dataset.type;
+        let media = { type: mediaType };
+        if (mediaType === "image") {
+            media.url = state.currentImageData || "https://picsum.photos/600/400?random=" + Math.floor(Math.random() * 100);
+        } else if (mediaType === "video") {
+            media.url = videoUrl.value || "https://www.youtube.com/embed/dQw4w9WgXcQ";
+        } else if (mediaType === "pdf") {
+            media = {
+                type: "pdf",
+                url: state.currentPdfData || "#",
+                filename: "document.pdf"
+            };
+        }
+        if (state.editingArticleId) {
+            const articleIndex = state.articles.findIndex(a => a.id === state.editingArticleId);
+            if (articleIndex !== -1) {
+                state.articles[articleIndex] = {
+                    ...state.articles[articleIndex],
+                    title,
+                    category,
+                    author,
+                    content,
+                    media,
+                    featured
+                };
+                successText.textContent = "Article mis à jour avec succès !";
+            }
+        } else {
+            const newArticle = {
+                id: Date.now(),
+                title,
+                category,
+                author,
+                media,
+                content,
+                date,
+                featured
+            };
+            state.articles.push(newArticle);
+            successText.textContent = "Article publié avec succès !";
+        }
+        renderArticles();
+        renderCarousel();
+        successMessage.style.display = 'block';
+        setTimeout(function() {
+            form.reset();
+            editorContent.innerHTML = "";
+            successMessage.style.display = 'none';
+            imagePreview.style.display = 'none';
+            state.currentImageData = null;
+            state.currentPdfData = null;
+            document.getElementById('admin-form').style.display = 'none';
+        }, 3000);
+    });
+
+    deleteBtn.addEventListener('click', function() {
+        if (!state.editingArticleId) return;
+        if (confirm("Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.")) {
+            const articleIndex = state.articles.findIndex(a => a.id === state.editingArticleId);
+            if (articleIndex !== -1) {
+                state.articles.splice(articleIndex, 1);
+                renderArticles();
+                renderCarousel();
+                document.getElementById('admin-form').style.display = 'none';
+            }
+        }
+    });
+
+    function openFormForEdit(article) {
+        if (!state.isAdmin) return;
+        state.editingArticleId = article.id;
+        articleIdInput.value = article.id;
+        document.getElementById('title').value = article.title;
+        document.getElementById('category').value = article.category;
+        document.getElementById('author').value = article.author;
+        editorContent.innerHTML = article.content;
+        featuredCheckbox.checked = article.featured;
+        mediaTypeButtons.forEach(b => b.classList.remove('active'));
+        document.querySelector(`.media-type-btn[data-type="${article.media.type}"]`).classList.add('active');
+        mediaUploads.forEach(upload => upload.style.display = 'none');
+        document.querySelector(`.media-upload[data-type="${article.media.type}"]`).style.display = 'block';
+        if (article.media.type === "image") {
+            uploadedImage.src = article.media.url;
+            imagePreview.style.display = 'block';
+            state.currentImageData = article.media.url;
+        } else if (article.media.type === "video") {
+            videoUrl.value = article.media.url;
+        }
+        formTitle.textContent = "Modifier l'Article";
+        submitBtn.textContent = "Mettre à jour";
+        deleteBtn.style.display = 'block';
+        document.getElementById('admin-form').style.display = 'block';
+        window.scrollTo({
+            top: document.getElementById('admin-form').offsetTop - 100,
+            behavior: 'smooth'
+        });
+    }
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        imageUploadContainer.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        imageUploadContainer.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        imageUploadContainer.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight() {
+        imageUploadContainer.classList.add('drag-over');
+    }
+
+    function unhighlight() {
+        imageUploadContainer.classList.remove('drag-over');
+    }
+
+    imageUploadContainer.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        handleFiles(files);
+    }
+
+    imageUpload.addEventListener('change', function() {
+        handleFiles(this.files);
+    });
+
+    pdfUpload.addEventListener('change', function() {
+        const files = this.files;
+        if (files.length > 0) {
+            const file = files[0];
+            if (file.type === "application/pdf") {
+                state.currentPdfData = "#";
+                alert("PDF téléchargé avec succès !");
+            } else {
+                alert("Veuillez sélectionner un fichier PDF valide.");
+            }
+        }
+    });
+
+    function handleFiles(files) {
+        if (files.length > 0) {
+            const file = files[0];
+            if (file.type.match('image.*')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                    state.currentImageData = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                alert("Veuillez sélectionner un fichier image valide (JPG, PNG, etc.).");
+            }
+        }
+    }
+
+    removeImageBtn.addEventListener('click', function() {
+        imagePreview.style.display = 'none';
+        imageUpload.value = '';
+        state.currentImageData = null;
+    });
+
+    editorButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const command = this.dataset.command;
+            const value = this.dataset.value;
+            if (command === "createLink") {
+                const url = prompt("Entrez l'URL du lien:", "https://");
+                if (url) {
+                    document.execCommand(command, false, url);
+                }
+            } else if (value) {
+                document.execCommand(command, false, value);
+            } else {
+                document.execCommand(command, false, null);
+            }
+            editorContent.focus();
+        });
+    });
+
+    document.querySelectorAll('.edit-btn').forEach(btn => btn.style.display = 'none');
+});
+</script>
+</body>
+</html>
